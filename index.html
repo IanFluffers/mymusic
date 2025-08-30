@@ -1,0 +1,73 @@
+<script type="text/javascript">
+                const player = document.querySelector(".audio-player");
+                const audio = player.querySelector("audio");
+                const playpause = player.querySelector(".playpause");
+                const audioFiles = [
+                    "../music/After Hours - Purrple Cat.mp3",
+                    "../music/Blissed Out - Odem Medo.mp3",
+                    "../music/Cascading - Sleepermane.mp3",
+                    "../music/Chugging Along - Purrple Cat.mp3",
+                    "../music/Crossroads - Purrple Cat.mp3",
+                    "../music/End of the Line - Purrple Cat.mp3",
+                    "../music/Frost Bloom - Odem Medo.mp3",
+                    "../music/McKenzie River - Odem Medo.mp3",
+                    "../music/Memory of a Friend - Ryan Hurtt.mp3",
+                    "../music/Mysterious Passanger - Purrple Cat.mp3",
+                    "../music/Night Train - Purrple Cat.mp3",
+                    "../music/Nightfall Reverie - Dmytro Leibovych.mp3",
+                    "../music/Passing Time - Purrple Cat.mp3",
+                    "../music/Running Late - Purrple Cat.mp3",
+                    "../music/Schlafwandler - XERNEA.mp3",
+                    "../music/Sunset Nap - 1am in the loop.mp3",
+                    "../music/Time Loop - Purrple Cat.mp3",
+                    "../music/Tracks to Nowhere - Purrple Cat.mp3",
+                    "../music/Tunnels - Purrple Cat.mp3",
+                    "../music/Zenith - Gyûki.mp3"
+                ];
+                var audioFileNames = [];
+
+                let isPlaying = false;
+
+                playpause.addEventListener("click", () => {
+                    if (isPlaying) {
+                        audio.pause();
+                    } else {
+                        audio.play();
+                    }
+                });
+
+                audio.addEventListener("play", () => {
+                    isPlaying = true;
+                    playpause.innerHTML = '<i class="fa-round fa-solid fa-pause"></i>';
+                });
+
+                audio.addEventListener("pause", () => {
+                    isPlaying = false;
+                    playpause.innerHTML = '<i class="fa-round fa-solid fa-play"></i>';
+                });
+
+                audio.addEventListener("ended", () => {
+                    isPlaying = false;
+                    playpause.innerHTML = '<i class="fa-round fa-solid fa-play"></i>';
+                    updateAudio();
+                });
+
+                // Function to update audio source and info
+                function updateAudio() {
+                    var index = Math.floor(Math.random() * audioFiles.length);
+                    audio.src = audioFiles[index];
+                    audio.play();
+                }
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    audio.volume = 0.10; // Set initial volume to 20%
+                    updateAudio();
+                    audioFiles.forEach(filePath => {
+                        fileName = filePath.split('/')[2]; 
+                        audioFileNames.push(fileName);
+                    });
+                });
+                // Example usage:
+                // updateAudio("path/to/your/audiofile.mp3", "Now Playing: Your Audio Title");
+            </script>
+        </div>
